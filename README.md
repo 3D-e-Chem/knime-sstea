@@ -1,5 +1,7 @@
 Knime node to calculate subfamily specific two entropy analysis (ss-TEA) score.
 
+The ss-TEA can identify specific ligand binding residue positions for any receptor, predicated on high quality sequence information.
+
 See reference at https://doi.org/10.1186/1471-2105-12-332 for a description of the score.
 
 [![Build Status](https://travis-ci.org/3D-e-Chem/knime-ss-TEA.svg?branch=master)](https://travis-ci.org/3D-e-Chem/knime-ss-TEA)
@@ -26,9 +28,6 @@ See example workflow at [examples/ss-TEA-example.zip](examples/ss-TEA-example.zi
 
 It can be run by importing it into Knime as an archive.
 
-The example workflow requires the `Bio Sequence Reader` node of the [NGS extension](https://tech.knime.org/community/next-generationsequencing)
-
-
 # Build
 
 ```
@@ -48,7 +47,7 @@ Steps to get development environment setup:
 4. Install m2e (Maven integration for Eclipse)
 
     1. Goto Help > Install new software ...
-    2. Make sure Update site is http://update.knime.org/analytics-platform/3.1 in the pull down list otherwise add it
+    2. Make sure Update site is http://update.knime.org/analytics-platform/3.1 is in the pull down list otherwise add it
     3. Select --all sites-- in work with pulldown
     4. Select m2e (Maven integration for Eclipse)
     5. Install software & restart

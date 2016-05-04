@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<knimeNode icon="./default.png" type="Source" xmlns="http://knime.org/node/v2.8" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://knime.org/node/v2.10 http://knime.org/node/v2.10.xsd">
+    <name>ss-TEA score</name>
+    
+    <shortDescription>
+        Subfamily specific two entropy analysis score.
+    </shortDescription>
+    
+    <fullDescription>
+        <intro>Calculates ss-TEA score of sequence alignment and subfamily members.</intro>
+        
+        
+        <option name="IdentifierColumn">Column to use for sequence indentifiers</option>
+        <option name="SequenceColumn">Column to use for sequence</option>
+    </fullDescription>
+    
+    <ports>
+        <inPort index="0" name="Sequence alignment">Table sequence alignment</inPort>
+        <inPort index="1" name="Subfamily members">Table subfamily members</inPort>
+        <!-- possibly more input ports here-->
+        <outPort index="0" name="ss-TEA scores">ss-TEA scores and stats</outPort>
+        <!-- possibly more output ports here-->
+    </ports>    
+</knimeNode>
