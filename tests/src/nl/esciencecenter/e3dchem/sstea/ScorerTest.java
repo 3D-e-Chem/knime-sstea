@@ -146,4 +146,24 @@ public class ScorerTest {
         assertEquals(expected, scores);
     }
 
+    @Test
+    public void jaggedSequence() throws KeySelectorException {
+        sequences.put("seq10", "ICK");
+        Set<String> subfamily_members = new HashSet<String>();
+        subfamily_members.add("seq1");
+        List<Score> scores = scorer.scoreit(sequences, subfamily_members);
+        assertEquals(scores.size(), 1);
+    }
+
+    @Test
+    public void emptySequence() throws KeySelectorException {
+        sequences.put("seq10", "");
+        Set<String> subfamily_members = new HashSet<String>();
+        subfamily_members.add("seq1");
+
+        thrown.expect(IllegalArgumentException.class);
+
+        scorer.scoreit(sequences, subfamily_members);
+    }
+
 }
