@@ -7,16 +7,21 @@
     </shortDescription>
     
     <fullDescription>
-        <intro>Calculates ss-TEA score of sequence alignment and subfamily members.</intro>
-        
-        
-        <option name="IdentifierColumn">Column to use for sequence indentifiers</option>
-        <option name="SequenceColumn">Column to use for sequence</option>
+        <intro>Calculates ss-TEA score of sequence alignment and subfamily members.<br />
+        <p />
+	Calculates entropies of each column/residue position in the sequence alignment.
+	The entropy is calculated twice once for members inside the subfamily and once for members outside the subfamily.
+	The ss-TEA score is high when entropy within subfamily is low and entropy outside subfamily is high.<br />
+        <p />
+	The ss-TEA can identify specific ligand binding residue positions for any receptor, predicated on high quality sequence information.
+	</intro>
+        <option name="IdentifierColumn">Column to use for sequence indentifiers for sequence alignment port and subfamily port</option>
+        <option name="SequenceColumn">Column to use for sequence, where the sequence is long string of amino acids</option>
     </fullDescription>
     
     <ports>
-        <inPort index="0" name="Sequence alignment">Table sequence alignment</inPort>
-        <inPort index="1" name="Subfamily members">Table subfamily members</inPort>
+        <inPort index="0" name="Sequence alignment">Table sequence alignment with sequence identifier column and sequence column.</inPort>
+        <inPort index="1" name="Subfamily members">Table subfamily members with sequence identifier column, subfamily must be subset of sequence alignment members of the first port.</inPort>
         <!-- possibly more input ports here-->
         <outPort index="0" name="ss-TEA scores">ss-TEA scores and stats</outPort>
         <!-- possibly more output ports here-->
