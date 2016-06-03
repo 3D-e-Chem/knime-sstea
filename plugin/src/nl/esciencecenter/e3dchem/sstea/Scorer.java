@@ -27,7 +27,10 @@ public class Scorer {
             throw new KeySelectorException("Not all subfamily_members are in keys of sequences");
         }
 
-        int minimumSequenceLength = Collections.max(sequences.values()).length();
+        int minimumSequenceLength = Collections.min(sequences.values()).length();
+        if (minimumSequenceLength == 0) {
+            throw new IllegalArgumentException("Empty sequence");
+        }
         int outSideNr = sequences.size() - subfamily_members.size();
         int inSideNr = subfamily_members.size();
 
