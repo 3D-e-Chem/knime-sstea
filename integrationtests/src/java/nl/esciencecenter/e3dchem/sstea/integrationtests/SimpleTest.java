@@ -2,14 +2,30 @@ package nl.esciencecenter.e3dchem.sstea.integrationtests;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
+import javax.swing.SwingUtilities;
+
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;
+import org.knime.core.data.container.BufferTracker;
+import org.knime.core.node.AbstractNodeView;
 import org.knime.core.node.CanceledExecutionException;
 import org.knime.core.node.ExecutionMonitor;
 import org.knime.core.node.InvalidSettingsException;
+import org.knime.core.node.Node;
+import org.knime.core.node.NodeLogger;
+import org.knime.core.node.NodeModel;
+import org.knime.core.node.util.ViewUtils;
 import org.knime.core.node.workflow.NativeNodeContainer;
 import org.knime.core.node.workflow.NodeContainer;
 import org.knime.core.node.workflow.NodeContainerState;
@@ -24,6 +40,7 @@ import org.knime.core.node.workflow.WorkflowManager;
 import org.knime.core.node.workflow.WorkflowPersistor.LoadResultEntry.LoadResultEntryType;
 import org.knime.core.node.workflow.WorkflowPersistor.WorkflowLoadResult;
 import org.knime.core.util.LockFailedException;
+import org.knime.core.util.Pair;
 import org.knime.testing.core.TestrunConfiguration;
 import org.knime.testing.core.ng.TestflowConfiguration;
 import org.knime.testing.core.ng.WorkflowTestContext;
@@ -46,15 +63,37 @@ import junit.framework.AssertionFailedError;
  *
  */
 public class SimpleTest {
+	private static final NodeLogger LOGGER = NodeLogger.getLogger(SimpleTest.class);
+	
     @Rule
     public ErrorCollector collector = new ErrorCollector();
     private WorkflowTestContext testContext;
+	private TestrunConfiguration runConfiguration;
 
+    @Before
+    public void setUp() {
+        runConfiguration = new TestrunConfiguration();
+        runConfiguration.setLoadSaveLoad(false); // set to true has not been implemented
+        runConfiguration.setTestDialogs(false); // set to true has not been implemented
+    }
+    
     @Test
-    public void test() throws IOException, InvalidSettingsException, CanceledExecutionException,
-            UnsupportedWorkflowVersionException, LockFailedException {
+    public void test_simple() throws IOException, InvalidSettingsException, CanceledExecutionException,
+            UnsupportedWorkflowVersionException, LockFailedException, InterruptedException {
         File workflowDir = new File("src/knime/sstea-simple-test");
-        File testcaseRoot = workflowDir;
+        runTestWorkflow(workflowDir);
+    }
+    
+//    @Test
+//    public void test_simply_broken() throws IOException, InvalidSettingsException, CanceledExecutionException,
+//            UnsupportedWorkflowVersionException, LockFailedException {
+//        File workflowDir = new File("src/knime/simply-broken");
+//        runTestWorkflow(workflowDir);
+//    }
+
+	private void runTestWorkflow(File workflowDir) throws IOException, InvalidSettingsException,
+			CanceledExecutionException, UnsupportedWorkflowVersionException, LockFailedException, InterruptedException {
+		File testcaseRoot = workflowDir;
 
         // this is to load the repository plug-in
         RepositoryManager.INSTANCE.toString();
@@ -62,18 +101,20 @@ public class SimpleTest {
         // in FileSingleNodeContainerPersistor will fail (see bug# 4464)
         ImageRepository.getImage(SharedImages.Busy);
 
-        TestrunConfiguration runConfiguration = new TestrunConfiguration();
-        runConfiguration.setTestViews(false); // set to true has not been implemented
-        runConfiguration.setLoadSaveLoad(false); // set to true has not been implemented
-        runConfiguration.setReportDeprecatedNodes(false); // set to true has not been implemented
-        runConfiguration.setTestDialogs(false); // set to true has not been implemented
         // createLoadTest
         testContext = new WorkflowTestContext(runConfiguration);
         WorkflowManager wfm = loadWorkflow(workflowDir, testcaseRoot, runConfiguration);
         testContext.setWorkflowManager(wfm);
 
-        // TODO WorkflowDeprecationTest (low prior)
-        // TODO WorkflowOpenViewsTest (low prior)
+        // WorkflowDeprecationTest
+        if (runConfiguration.isReportDeprecatedNodes()) {
+        	checkForDeprecatedNodes(wfm);
+        }
+        
+        // WorkflowOpenViewsTest
+        if (runConfiguration.isTestViews()) {
+        	openViews(wfm);
+        }
 
         // WorkflowExecuteTest.resetTestflowConfigNode
         for (NodeContainer cont : wfm.getNodeContainers()) {
@@ -100,20 +141,53 @@ public class SimpleTest {
 
         // TODO WorkflowHiliteTest (low prior)
 
-        // TODO WorkflowCloseViewsTest (low prior)
-
+        // WorkflowCloseViewsTest
+        if (runConfiguration.isTestViews()) {
+        	closeViews();
+        }
+        
         // TODO save (low prior)
 
         // TODO WorkflowCloseTest (med prior)
+        if (runConfiguration.isCloseWorkflowAfterTest()) {
+        	closeWorkflow();
+        }
 
         // TODO WorkflowLogMessagesTest (med prior)
 
         // TODO WorkflowUncaughtExceptionsTest (high prior)
 
         // TODO WorkflowMemLeakTest (low prior)
+	}
+
+	/**
+	 * Copied from org.knime.testing.core.ng.WorkflowCloseTest.run()
+	 */
+    private void closeWorkflow() {
+    	try {
+            testContext.getWorkflowManager().shutdown();
+            testContext.getWorkflowManager().getParent().removeNode(testContext.getWorkflowManager().getID());
+
+            List<NodeContainer> openWorkflows = new ArrayList<NodeContainer>(WorkflowManager.ROOT.getNodeContainers());
+            openWorkflows.removeAll(testContext.getAlreadyOpenWorkflows());
+            if (openWorkflows.size() > 0) {
+            	collector.addError(new AssertionFailedError(openWorkflows.size()
+                        + " dangling workflows detected: " + openWorkflows));
+            }
+
+            Collection<Pair<NodeContainer, StackTraceElement[]>> openBuffers =
+                BufferTracker.getInstance().getOpenBuffers();
+            if (!openBuffers.isEmpty()) {
+            	collector.addError(new AssertionFailedError(openBuffers.size() + " open buffers detected: "
+                    + openBuffers.stream().map(p -> p.getFirst().getNameWithID()).collect(Collectors.joining(", "))));
+            }
+            BufferTracker.getInstance().clear();
+        } catch (Throwable t) {
+        	collector.addError(t);
+        }
     }
 
-    /**
+	/**
      * Copied from org.knime.testing.core.ng.WorkflowExecuteTest
      * 
      * @param workflowManager
@@ -248,6 +322,140 @@ public class SimpleTest {
         } else if (Type.WARNING.equals(nodeMessage.getMessageType())) {
             String error = "Node '" + node.getNameWithID() + "' has unexpected warning message: " + nodeMessage.getMessage();
             collector.addError(new AssertionFailedError(error));
+        }
+    }
+    
+    /**
+     * Copied from org.knime.testing.core.ng.WorkflowUncaughtExceptionsTest
+     * @param wfm
+     */
+    private void checkForDeprecatedNodes(final WorkflowManager wfm) {
+        for (NodeContainer node : wfm.getNodeContainers()) {
+            if (node instanceof SingleNodeContainer) {
+                if ("true".equals(((SingleNodeContainer)node).getXMLDescription().getAttribute("deprecated"))) {
+                	collector.addError(new AssertionFailedError("Node '" + node.getName() + "' is deprecated."));
+                }
+            } else if (node instanceof WorkflowManager) {
+                checkForDeprecatedNodes((WorkflowManager)node);
+            } else {
+                throw new IllegalStateException("Unknown node container type: " + node.getClass().getName());
+            }
+        }
+    }
+    
+    /**
+     * Copied from org.knime.testing.core.ng.WorkflowOpenViewsTest
+     * 
+     * @param result
+     * @param wfm
+     */
+    private void openViews(final WorkflowManager wfm) {
+        for (NodeContainer node : wfm.getNodeContainers()) {
+            if (node instanceof SingleNodeContainer) {
+                for (int i = 0; i < node.getNrViews(); i++) {
+                    try {
+                        openView((SingleNodeContainer)node, i);
+                    } catch (Exception ex) {
+                        String msg =
+                                "View " + i + " of node '" + node.getNameWithID() + "' has thrown a "
+                                        + ex.getClass().getSimpleName() + " during open: " + ex.getMessage();
+                        AssertionFailedError error = new AssertionFailedError(msg);
+                        error.initCause(ex);
+                        collector.addError(error);
+                    }
+                }
+                // test InteractiveNodeViews
+                if (node.hasInteractiveView()) {
+                    try {
+                        openInteractiveView((SingleNodeContainer)node);
+                    } catch (Exception ex) {
+                        String msg =
+                                "Interactive view of node '" + node.getNameWithID() + "' has thrown a "
+                                        + ex.getClass().getSimpleName() + " during open: " + ex.getMessage();
+                        AssertionFailedError error = new AssertionFailedError(msg);
+                        error.initCause(ex);
+                        collector.addError(error);
+                    }
+                }
+            } else if (node instanceof WorkflowManager) {
+                openViews((WorkflowManager)node);
+            } else {
+                throw new IllegalStateException("Unknown node container type: " + node.getClass());
+            }
+        }
+    }
+
+    /**
+     * Copied from org.knime.testing.core.ng.WorkflowOpenViewsTest
+     * 
+     * @param node
+     * @param index
+     */
+    private void openView(final SingleNodeContainer node, final int index) {
+        // test NodeViews
+        LOGGER.debug("opening view nr. " + index + " for node " + node.getName());
+        ViewUtils.invokeAndWaitInEDT(new Runnable() {
+            /** {@inheritDoc} */
+            @Override
+            public void run() {
+                final AbstractNodeView<? extends NodeModel> view = node.getView(index);
+                // store the view in order to close it after the test finishes
+                List<AbstractNodeView<? extends NodeModel>> l = testContext.getNodeViews().get(node);
+                if (l == null) {
+                    l = new ArrayList<AbstractNodeView<? extends NodeModel>>(2);
+                    testContext.getNodeViews().put(node, l);
+                }
+                l.add(view);
+                // open it now.
+                Node.invokeOpenView(view, "View #" + index);
+            }
+        });
+    }
+
+    /**
+     * Copied from org.knime.testing.core.ng.WorkflowOpenViewsTest
+     * 
+     * @param node
+     */
+    private void openInteractiveView(final SingleNodeContainer node) {
+        LOGGER.debug("opening interactive view for node " + node.getName());
+        final AbstractNodeView<?> view = node.getInteractiveView();
+        // open it now.
+        ViewUtils.invokeAndWaitInEDT(new Runnable() {
+            /** {@inheritDoc} */
+            @Override
+            public void run() {
+                Node.invokeOpenView(view, "Interactive View");
+            }
+        });
+    }
+    
+    /**
+     * Copied from org.knime.testing.core.ng.WorkflowCloseViewsTest
+     * 
+     * @param result
+     * @throws InterruptedException
+     */
+    private void closeViews() throws InterruptedException {
+        Semaphore done = new Semaphore(1);
+        done.acquire();
+        SwingUtilities.invokeLater(() -> done.release());
+        done.tryAcquire(2, TimeUnit.SECONDS);
+
+        for (Map.Entry<SingleNodeContainer, List<AbstractNodeView<? extends NodeModel>>> e : testContext.getNodeViews()
+                .entrySet()) {
+            for (AbstractNodeView<? extends NodeModel> view : e.getValue()) {
+                try {
+                    Node.invokeCloseView(view);
+                } catch (Exception ex) {
+                    String msg =
+                            "View '" + view + "' of node '" + e.getKey().getNameWithID() + "' has thrown a "
+                                    + ex.getClass().getSimpleName() + " during close: " + ex.getMessage();
+                    AssertionFailedError error = new AssertionFailedError(msg);
+                    error.initCause(ex);
+                    collector.addError(error);
+                }
+            }
         }
     }
 }
