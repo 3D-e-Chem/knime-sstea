@@ -22,8 +22,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 				<!-- knime -application org.knime.testing.NGTestflowRunner -nosplash -consoleLog -root $PWD/sstea-simple-test -xmlResult /tmp/knime.sstea.regression.xml -logMessages -deprecated  -->
 <!-- 					<application>org.knime.testing.NGTestflowRunner</application>
 					<appArgLine>-nosplash -consoleLog -root src/knime -xmlResultDir ${project.build.directory}/surefire-reports -logMessages -deprecated</appArgLine> -->
-					<useUIHarness>true</useUIHarness>
-					<useUIThread>true</useUIThread> 
 				</configuration>
 
 			</plugin>
