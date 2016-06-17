@@ -14,10 +14,10 @@ import org.knime.core.data.DataColumnSpecCreator;
 import org.knime.core.data.DataRow;
 import org.knime.core.data.DataTableSpec;
 import org.knime.core.data.RowKey;
+import org.knime.core.data.StringValue;
 import org.knime.core.data.def.DefaultRow;
 import org.knime.core.data.def.DoubleCell;
 import org.knime.core.data.def.IntCell;
-import org.knime.core.data.def.StringCell;
 import org.knime.core.node.BufferedDataContainer;
 import org.knime.core.node.BufferedDataTable;
 import org.knime.core.node.CanceledExecutionException;
@@ -79,7 +79,7 @@ public class ScoreNodeModel extends NodeModel {
         Set<String> subfamily_members = new HashSet<String>();
         int smSeqIdIndex = smTable.getDataTableSpec().findColumnIndex(m_identifierColumnName.getStringValue());
         for (DataRow smRow : smTable) {
-            String sm = ((StringCell) smRow.getCell(smSeqIdIndex)).getStringValue();
+            String sm = ((StringValue) smRow.getCell(smSeqIdIndex)).getStringValue();
             subfamily_members.add(sm);
         }
         return subfamily_members;
@@ -90,8 +90,8 @@ public class ScoreNodeModel extends NodeModel {
         int seqIdIndex = seqTable.getDataTableSpec().findColumnIndex(m_identifierColumnName.getStringValue());
         int seqIndex = seqTable.getDataTableSpec().findColumnIndex(m_sequenceColumnName.getStringValue());
         for (DataRow seqrow : seqTable) {
-            String key = ((StringCell) seqrow.getCell(seqIdIndex)).getStringValue();
-            String value = ((StringCell) seqrow.getCell(seqIndex)).getStringValue();
+            String key = ((StringValue) seqrow.getCell(seqIdIndex)).getStringValue();
+            String value = ((StringValue) seqrow.getCell(seqIndex)).getStringValue();
             sequences.put(key, value);
         }
         return sequences;
@@ -147,6 +147,12 @@ public class ScoreNodeModel extends NodeModel {
 
     @Override
     protected DataTableSpec[] configure(DataTableSpec[] inSpecs) throws InvalidSettingsException {
+    	if (inSpecs.length > 0 && inSpecs[0] != null){
+        	int columnIndex = inSpecs[0].findColumnIndex(m_identifierColumnName.getStringValue());
+        	if (columnIndex < 0){
+        		throw new InvalidSettingsException("No valid identifier column selected");
+        	}
+        }
         return new DataTableSpec[] { outputSpec() };
     }
 

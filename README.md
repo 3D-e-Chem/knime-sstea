@@ -5,7 +5,7 @@ The ss-TEA can identify specific ligand binding residue positions for any recept
 See reference at https://doi.org/10.1186/1471-2105-12-332 for a description of the score.
 
 [![Build Status](https://travis-ci.org/3D-e-Chem/knime-sstea.svg?branch=master)](https://travis-ci.org/3D-e-Chem/knime-sstea)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ac1953c0defd4b81bd0c12c37cede85f)](https://www.codacy.com/app/NLeSC/knime-sstea?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=3D-e-Chem/knime-sstea&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ac1953c0defd4b81bd0c12c37cede85f)](https://www.codacy.com/app/3D-e-Chem/knime-sstea?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=3D-e-Chem/knime-sstea&amp;utm_campaign=Badge_Grade)
 [![DOI](https://zenodo.org/badge/19641/3D-e-Chem/knime-sstea.svg)](https://zenodo.org/badge/latestdoi/19641/3D-e-Chem/knime-sstea)
 
 # Installation
