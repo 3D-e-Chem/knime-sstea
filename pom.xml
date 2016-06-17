@@ -32,7 +32,6 @@
         <module>feature</module>
         <module>p2</module>
         <module>tests</module>
-        <module>integrationtests</module>
     </modules>
 
     <prerequisites>
