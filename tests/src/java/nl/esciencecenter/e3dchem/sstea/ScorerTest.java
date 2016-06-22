@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.xml.crypto.KeySelectorException;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -44,7 +42,7 @@ public class ScorerTest {
     }
 
     @Test
-    public void tofew_sequences() throws KeySelectorException {
+    public void tofew_sequences() {
         Map<String, String> sequences = new HashMap<String, String>();
         sequences.put("seq1", "A");
         Set<String> subfamily_members = new HashSet<String>();
@@ -55,7 +53,7 @@ public class ScorerTest {
     }
 
     @Test
-    public void tofew_subfamily_members() throws KeySelectorException {
+    public void tofew_subfamily_members() {
         Set<String> subfamily_members = new HashSet<String>();
 
         thrown.expect(IllegalArgumentException.class);
@@ -64,17 +62,17 @@ public class ScorerTest {
     }
 
     @Test
-    public void subfamily_members_notin_sequences() throws KeySelectorException {
+    public void subfamily_members_notin_sequences() {
         Set<String> subfamily_members = new HashSet<String>();
         subfamily_members.add("seq99");
 
-        thrown.expect(KeySelectorException.class);
+        thrown.expect(IllegalArgumentException.class);
 
         scorer.scoreit(sequences, subfamily_members);
     }
 
     @Test
-    public void conserved_subfamily() throws KeySelectorException {
+    public void conserved_subfamily() {
         Set<String> subfamily_members = new HashSet<String>();
         subfamily_members.add("seq1");
         subfamily_members.add("seq2");
@@ -89,7 +87,7 @@ public class ScorerTest {
     }
 
     @Test
-    public void conserved_outsidesubfamily() throws KeySelectorException {
+    public void conserved_outsidesubfamily() {
         Set<String> subfamily_members = new HashSet<String>();
         subfamily_members.add("seq5");
         subfamily_members.add("seq6");
@@ -104,7 +102,7 @@ public class ScorerTest {
     }
 
     @Test
-    public void halfconserved_subfamily() throws KeySelectorException {
+    public void halfconserved_subfamily() {
         Set<String> subfamily_members = new HashSet<String>();
         subfamily_members.add("seq1");
         subfamily_members.add("seq2");
@@ -117,7 +115,7 @@ public class ScorerTest {
     }
 
     @Test
-    public void halfconserved_outsidesubfamily() throws KeySelectorException {
+    public void halfconserved_outsidesubfamily() {
         Set<String> subfamily_members = new HashSet<String>();
         subfamily_members.add("seq3");
         subfamily_members.add("seq4");
@@ -132,7 +130,7 @@ public class ScorerTest {
     }
 
     @Test
-    public void conserved75_subfamily() throws KeySelectorException {
+    public void conserved75_subfamily() {
         Set<String> subfamily_members = new HashSet<String>();
         subfamily_members.add("seq1");
         subfamily_members.add("seq2");
@@ -147,7 +145,7 @@ public class ScorerTest {
     }
 
     @Test
-    public void jaggedSequence() throws KeySelectorException {
+    public void jaggedSequence() {
         sequences.put("seq10", "ICK");
         Set<String> subfamily_members = new HashSet<String>();
         subfamily_members.add("seq1");
@@ -156,7 +154,7 @@ public class ScorerTest {
     }
 
     @Test
-    public void emptySequence() throws KeySelectorException {
+    public void emptySequence() {
         sequences.put("seq10", "");
         Set<String> subfamily_members = new HashSet<String>();
         subfamily_members.add("seq1");
