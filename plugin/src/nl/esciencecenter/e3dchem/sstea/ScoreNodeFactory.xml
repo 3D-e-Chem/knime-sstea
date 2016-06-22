@@ -11,7 +11,8 @@
         <p />
 	Calculates entropies of each column/residue position in the sequence alignment.
 	The entropy is calculated twice once for members inside the subfamily and once for members outside the subfamily.
-	The ss-TEA score is high when entropy within subfamily is low and entropy outside subfamily is high.<br />
+	The ss-TEA score is a distance which is low when entropy within subfamily is low and entropy outside subfamily is high.<br/>
+	So positions with the lowest ss-TEA scores are most likely to be involved in ligand binding within the selected subfamily.<br/> 
         <p />
 	The ss-TEA can identify specific ligand binding residue positions for any receptor, predicated on high quality sequence information.
 	</intro>
