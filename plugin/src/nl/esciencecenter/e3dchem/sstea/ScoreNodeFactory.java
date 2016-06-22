@@ -13,12 +13,12 @@ public class ScoreNodeFactory extends NodeFactory<ScoreNodeModel> {
 
     @Override
     protected int getNrNodeViews() {
-        return 1;
+        return 0;
     }
 
     @Override
     public NodeView<ScoreNodeModel> createNodeView(int viewIndex, ScoreNodeModel nodeModel) {
-        return new ScoreNodeView(nodeModel);
+        return null;
     }
 
     @Override
