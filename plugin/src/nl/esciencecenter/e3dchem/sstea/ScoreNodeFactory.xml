@@ -12,13 +12,14 @@
 	Calculates entropies of each column/residue position in the sequence alignment.
 	The entropy is calculated twice once for members inside the subfamily and once for members outside the subfamily.
 	The ss-TEA score is a distance which is low when entropy within subfamily is low and entropy outside subfamily is high.<br/>
-	So positions with the lowest ss-TEA scores are most likely to be involved in ligand binding within the selected subfamily.<br/> 
+	So positions with the lowest ss-TEA scores are most likely to be involved in ligand binding within the selected subfamily.<br/>
+	A large sequence alignments without gaps will work best.<br/> 
         <p />
 	The ss-TEA can identify specific ligand binding residue positions for any receptor, predicated on high quality sequence information.
 	</intro>
-        <option name="IdentifierColumn">Column to use for sequence indentifiers for sequence alignment port and subfamily port</option>
-        <option name="SequenceColumn">Column to use for sequence, where the sequence is long string of amino acids</option>
-        <option name="IncludeGaps">When unchecked (default) gaps are ignored. When checked treat gaps as a amino acids</option>
+        <option name="Column with sequence identifier">Column to use for sequence indentifiers for sequence alignment port and subfamily port</option>
+        <option name="Column with sequence">Column to use for sequence, where the sequence is long string of amino acids</option>
+        <option name="Include gaps">When unchecked (default) gaps are ignored. When checked treat gaps as a amino acids.</option>
     </fullDescription>
     
     <ports>
