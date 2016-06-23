@@ -6,7 +6,7 @@
 <entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
 </config>
 <config key="model">
-<entry key="owner" type="xstring" value="s.verhoeven@esciencecenter.nl"/>
+<entry key="owner" type="xstring" value="verhoes@inf.uni-konstanz.de"/>
 <config key="requiredLogErrors">
 <entry key="array-size" type="xint" value="0"/>
 </config>
@@ -17,17 +17,25 @@
 <entry key="array-size" type="xint" value="0"/>
 </config>
 <config key="failingNodes">
-<entry key="array-size" type="xint" value="2"/>
-<entry key="0" type="xstring" value="16"/>
-<entry key="1" type="xstring" value="17"/>
+<entry key="array-size" type="xint" value="4"/>
+<entry key="0" type="xstring" value="33"/>
+<entry key="1" type="xstring" value="37"/>
+<entry key="2" type="xstring" value="6"/>
+<entry key="3" type="xstring" value="31"/>
 </config>
 <config key="requiredNodeWarnings">
-<entry key="nodeID_0" type="xstring" value="6"/>
+<entry key="nodeID_0" type="xstring" value="33"/>
 <entry key="message_0" type="xstring" value="Sequence identifier column and sequence column should not be the same column"/>
-<entry key="count" type="xint" value="1"/>
+<entry key="nodeID_1" type="xstring" value="6"/>
+<entry key="message_1" type="xstring" value="Sequence identifier column and sequence column should not be the same column"/>
+<entry key="nodeID_2" type="xstring" value="31"/>
+<entry key="message_2" type="xstring" value="No valid identifier column selected, require a String column"/>
+<entry key="count" type="xint" value="3"/>
 </config>
 <config key="requiredNodeErrors">
-<entry key="count" type="xint" value="0"/>
+<entry key="nodeID_0" type="xstring" value="37"/>
+<entry key="message_0" type="xstring" value="Execute failed: org.knime.core.data.def.IntCell cannot be cast to org.knime.core.data.StringValue"/>
+<entry key="count" type="xint" value="1"/>
 </config>
 <entry key="timeout" type="xint" value="300"/>
 <entry key="maxHilitedRows" type="xint" value="2500"/>
@@ -36,7 +44,7 @@
 </config>
 </config>
 <entry key="customDescription" type="xstring" isnull="true" value=""/>
-<entry key="state" type="xstring" value="EXECUTED"/>
+<entry key="state" type="xstring" value="CONFIGURED"/>
 <entry key="factory" type="xstring" value="org.knime.testing.node.config.TestConfigNodeFactory"/>
 <entry key="node-name" type="xstring" value="Testflow Configuration"/>
 <entry key="node-bundle-name" type="xstring" value="Test-Node extension for KNIME Workbench"/>
@@ -49,11 +57,11 @@
 <entry key="node-feature-version" type="xstring" value="3.1.2.v201603311002"/>
 <config key="factory_settings"/>
 <entry key="name" type="xstring" value="Testflow Configuration"/>
-<entry key="hasContent" type="xboolean" value="true"/>
+<entry key="hasContent" type="xboolean" value="false"/>
 <entry key="isInactive" type="xboolean" value="false"/>
 <config key="ports"/>
 <config key="filestores">
 <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-<entry key="file_store_id" type="xstring" value="6f42e7b7-dbcb-407b-9f95-d800cb15eda9"/>
+<entry key="file_store_id" type="xstring" isnull="true" value=""/>
 </config>
 </config>

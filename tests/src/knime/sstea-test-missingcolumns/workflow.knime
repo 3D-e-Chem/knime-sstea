@@ -5,34 +5,14 @@
 <entry key="name" type="xstring" isnull="true" value=""/>
 <config key="authorInformation">
 <entry key="authored-by" type="xstring" value="vagrant"/>
-<entry key="authored-when" type="xstring" value="2016-06-22 13:49:00 +0000"/>
-<entry key="lastEdited-by" type="xstring" value="vagrant"/>
-<entry key="lastEdited-when" type="xstring" value="2016-06-22 14:35:08 +0000"/>
+<entry key="authored-when" type="xstring" value="2016-06-22 15:49:00 +0200"/>
+<entry key="lastEdited-by" type="xstring" value="verhoes"/>
+<entry key="lastEdited-when" type="xstring" value="2016-06-23 17:37:05 +0200"/>
 </config>
 <entry key="customDescription" type="xstring" isnull="true" value=""/>
 <entry key="state" type="xstring" value="IDLE"/>
-<config key="nodecontainer_message">
-<entry key="type" type="xstring" value="ERROR"/>
-<entry key="message" type="xstring" value="Error in sub flow."/>
-</config>
 <config key="workflow_credentials"/>
 <config key="nodes">
-<config key="node_1">
-<entry key="id" type="xint" value="1"/>
-<entry key="node_settings_file" type="xstring" value="Testflow Configuration (#1)/settings.xml"/>
-<entry key="node_is_meta" type="xboolean" value="false"/>
-<entry key="node_type" type="xstring" value="NativeNode"/>
-<entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>
-<config key="ui_settings">
-<config key="extrainfo.node.bounds">
-<entry key="array-size" type="xint" value="4"/>
-<entry key="0" type="xint" value="84"/>
-<entry key="1" type="xint" value="57"/>
-<entry key="2" type="xint" value="106"/>
-<entry key="3" type="xint" value="103"/>
-</config>
-</config>
-</config>
 <config key="node_6">
 <entry key="id" type="xint" value="6"/>
 <entry key="node_settings_file" type="xstring" value="ss_TEA score (#6)/settings.xml"/>
@@ -44,8 +24,8 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="344"/>
 <entry key="1" type="xint" value="217"/>
-<entry key="2" type="xint" value="103"/>
-<entry key="3" type="xint" value="83"/>
+<entry key="2" type="xint" value="85"/>
+<entry key="3" type="xint" value="79"/>
 </config>
 </config>
 </config>
@@ -60,8 +40,8 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="104"/>
 <entry key="1" type="xint" value="217"/>
-<entry key="2" type="xint" value="104"/>
-<entry key="3" type="xint" value="83"/>
+<entry key="2" type="xint" value="85"/>
+<entry key="3" type="xint" value="79"/>
 </config>
 </config>
 </config>
@@ -76,8 +56,8 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="644"/>
 <entry key="1" type="xint" value="477"/>
-<entry key="2" type="xint" value="104"/>
-<entry key="3" type="xint" value="83"/>
+<entry key="2" type="xint" value="85"/>
+<entry key="3" type="xint" value="79"/>
 </config>
 </config>
 </config>
@@ -92,8 +72,8 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="884"/>
 <entry key="1" type="xint" value="477"/>
-<entry key="2" type="xint" value="103"/>
-<entry key="3" type="xint" value="83"/>
+<entry key="2" type="xint" value="85"/>
+<entry key="3" type="xint" value="79"/>
 </config>
 </config>
 </config>
@@ -108,8 +88,8 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="84"/>
 <entry key="1" type="xint" value="357"/>
-<entry key="2" type="xint" value="104"/>
-<entry key="3" type="xint" value="83"/>
+<entry key="2" type="xint" value="85"/>
+<entry key="3" type="xint" value="79"/>
 </config>
 </config>
 </config>
@@ -124,8 +104,8 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="324"/>
 <entry key="1" type="xint" value="437"/>
-<entry key="2" type="xint" value="103"/>
-<entry key="3" type="xint" value="83"/>
+<entry key="2" type="xint" value="85"/>
+<entry key="3" type="xint" value="79"/>
 </config>
 </config>
 </config>
@@ -140,8 +120,8 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="644"/>
 <entry key="1" type="xint" value="197"/>
-<entry key="2" type="xint" value="104"/>
-<entry key="3" type="xint" value="83"/>
+<entry key="2" type="xint" value="85"/>
+<entry key="3" type="xint" value="79"/>
 </config>
 </config>
 </config>
@@ -156,8 +136,8 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="644"/>
 <entry key="1" type="xint" value="317"/>
-<entry key="2" type="xint" value="104"/>
-<entry key="3" type="xint" value="83"/>
+<entry key="2" type="xint" value="85"/>
+<entry key="3" type="xint" value="79"/>
 </config>
 </config>
 </config>
@@ -172,8 +152,8 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="824"/>
 <entry key="1" type="xint" value="237"/>
-<entry key="2" type="xint" value="103"/>
-<entry key="3" type="xint" value="83"/>
+<entry key="2" type="xint" value="85"/>
+<entry key="3" type="xint" value="79"/>
 </config>
 </config>
 </config>
@@ -188,8 +168,24 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="84"/>
 <entry key="1" type="xint" value="497"/>
-<entry key="2" type="xint" value="104"/>
-<entry key="3" type="xint" value="83"/>
+<entry key="2" type="xint" value="85"/>
+<entry key="3" type="xint" value="79"/>
+</config>
+</config>
+</config>
+<config key="node_39">
+<entry key="id" type="xint" value="39"/>
+<entry key="node_settings_file" type="xstring" value="Testflow Configuration (#39)/settings.xml"/>
+<entry key="node_is_meta" type="xboolean" value="false"/>
+<entry key="node_type" type="xstring" value="NativeNode"/>
+<entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>
+<config key="ui_settings">
+<config key="extrainfo.node.bounds">
+<entry key="array-size" type="xint" value="4"/>
+<entry key="0" type="xint" value="104"/>
+<entry key="1" type="xint" value="57"/>
+<entry key="2" type="xint" value="84"/>
+<entry key="3" type="xint" value="95"/>
 </config>
 </config>
 </config>

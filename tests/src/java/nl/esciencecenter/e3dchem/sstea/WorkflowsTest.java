@@ -49,4 +49,11 @@ public class WorkflowsTest {
 		File workflowDir = new File("src/knime/sstea-test-gaps");
 		runner.runTestWorkflow(workflowDir);
 	}
+
+	@Test
+	public void test_missingcolumns() throws IOException, InvalidSettingsException, CanceledExecutionException,
+			UnsupportedWorkflowVersionException, LockFailedException, InterruptedException {
+		File workflowDir = new File("src/knime/sstea-test-missingcolumns");
+		runner.runTestWorkflow(workflowDir);
+	}
 }
