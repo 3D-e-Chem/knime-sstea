@@ -169,11 +169,22 @@ public class ScoreNodeModel extends NodeModel {
 
     @Override
     protected DataTableSpec[] configure(DataTableSpec[] inSpecs) throws InvalidSettingsException {
-    	if (inSpecs.length > 0 && inSpecs[0] != null){
-        	int columnIndex = inSpecs[0].findColumnIndex(m_identifierColumnName.getStringValue());
-        	if (columnIndex < 0){
-        		throw new InvalidSettingsException("No valid identifier column selected");
-        	}
+        DataTableSpec sequenceSpec = inSpecs[0];
+        int idColumnIndex = sequenceSpec.findColumnIndex(m_identifierColumnName.getStringValue());
+        if (idColumnIndex < 0) {
+            throw new InvalidSettingsException("No valid identifier column selected, require a String column");
+        }
+        int seqColumnIndex = sequenceSpec.findColumnIndex(m_sequenceColumnName.getStringValue());
+        if (seqColumnIndex < 0) {
+            throw new InvalidSettingsException("No valid sequence column selected, require a String column");
+        }
+        if (idColumnIndex == seqColumnIndex) {
+            throw new InvalidSettingsException("Sequence identifier column and sequence column should not be the same column");
+        }
+        DataTableSpec subfamSpec = inSpecs[1];
+        int subfamColumnIndex = subfamSpec.findColumnIndex(m_identifierColumnName.getStringValue());
+        if (subfamColumnIndex < 0) {
+            throw new InvalidSettingsException("No valid identifier column selected in subfamily port, require a String column");
         }
         return new DataTableSpec[] { outputSpec() };
     }

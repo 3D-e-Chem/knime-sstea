@@ -35,15 +35,6 @@ public class WorkflowsTest {
         File workflowDir = new File("src/knime/sstea-simple-test");
         runner.runTestWorkflow(workflowDir);
     }
-    //
-    // @Test
-    // public void test_simply_broken() throws IOException,
-    // InvalidSettingsException, CanceledExecutionException,
-    // UnsupportedWorkflowVersionException, LockFailedException,
-    // InterruptedException {
-    // File workflowDir = new File("src/knime/simply-broken");
-    // runner.runTestWorkflow(workflowDir);
-    // }
 
     @Test
     public void test_inputs() throws IOException, InvalidSettingsException, CanceledExecutionException,
