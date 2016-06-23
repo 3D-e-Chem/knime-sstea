@@ -33,7 +33,7 @@ import org.knime.core.node.defaultnodesettings.SettingsModelString;
 public class ScoreNodeModel extends NodeModel {
 	public static final String CFGKEY_IDENTIFIERCOLUMNNAME = "IdentifierColumn";
 	public static final String CFGKEY_SEQUENCECOLUMNNAME = "SequenceColumn";
-	public static final String CFGKEY_INCLUDEGAPS = "IncludeeGaps";
+	public static final String CFGKEY_INCLUDEGAPS = "IncludeGaps";
 
 	private final SettingsModelString m_identifierColumnName = new SettingsModelString(CFGKEY_IDENTIFIERCOLUMNNAME,
 			null);
