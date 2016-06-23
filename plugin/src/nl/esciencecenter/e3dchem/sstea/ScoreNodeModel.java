@@ -46,24 +46,38 @@ public class ScoreNodeModel extends NodeModel {
         BufferedDataContainer container = exec.createDataContainer(outputSpec);
 
         BufferedDataTable seqTable = inData[0];
-        Map<String, String> sequences = prepareSequences(seqTable);
-
         BufferedDataTable smTable = inData[1];
-        Set<String> subfamily_members = prepareSubfamilyMembers(smTable);
+        if (seqTable.size() > 0 && smTable.size() > 0) {
+            Map<String, String> sequences = prepareSequences(seqTable);
 
-        Scorer scorer = new Scorer();
-        List<Score> scores = scorer.scoreit(sequences, subfamily_members);
+            exec.setProgress(0.1);
+            exec.checkCanceled();
 
-        addScores2Container(container, scores);
+            Set<String> subfamily_members = prepareSubfamilyMembers(smTable);
 
+            exec.setProgress(0.2);
+            exec.checkCanceled();
+
+            Scorer scorer = new Scorer();
+            List<Score> scores = scorer.scoreit(sequences, subfamily_members);
+
+            exec.setProgress(0.9);
+            exec.checkCanceled();
+
+            addScores2Container(container, scores);
+
+            exec.setProgress(1.0);
+        }
         container.close();
+
         BufferedDataTable out = container.getTable();
         return new BufferedDataTable[] { out };
     }
 
     public void addScores2Container(BufferedDataContainer container, List<Score> scores) {
+        long rowIndex = 0;
         for (Score score : scores) {
-            RowKey key = new RowKey(String.valueOf(score.getSeqPos()));
+            RowKey key = RowKey.createRowKey(rowIndex++);
             DataCell[] cells = new DataCell[6];
             cells[0] = new IntCell(score.getSeqPos());
             cells[1] = new DoubleCell(score.getScore());
@@ -79,8 +93,12 @@ public class ScoreNodeModel extends NodeModel {
         Set<String> subfamily_members = new HashSet<String>();
         int smSeqIdIndex = smTable.getDataTableSpec().findColumnIndex(m_identifierColumnName.getStringValue());
         for (DataRow smRow : smTable) {
-            String sm = ((StringValue) smRow.getCell(smSeqIdIndex)).getStringValue();
-            subfamily_members.add(sm);
+            if (smRow.getCell(smSeqIdIndex).isMissing()) {
+                // Ignore rows with missing values
+            } else {
+                String sm = ((StringValue) smRow.getCell(smSeqIdIndex)).getStringValue();
+                subfamily_members.add(sm);
+            }
         }
         return subfamily_members;
     }
@@ -90,9 +108,13 @@ public class ScoreNodeModel extends NodeModel {
         int seqIdIndex = seqTable.getDataTableSpec().findColumnIndex(m_identifierColumnName.getStringValue());
         int seqIndex = seqTable.getDataTableSpec().findColumnIndex(m_sequenceColumnName.getStringValue());
         for (DataRow seqrow : seqTable) {
-            String key = ((StringValue) seqrow.getCell(seqIdIndex)).getStringValue();
-            String value = ((StringValue) seqrow.getCell(seqIndex)).getStringValue();
-            sequences.put(key, value);
+            if (seqrow.getCell(seqIdIndex).isMissing() || seqrow.getCell(seqIndex).isMissing()) {
+                // Ignore rows with missing values
+            } else {
+                String key = ((StringValue) seqrow.getCell(seqIdIndex)).getStringValue();
+                String value = ((StringValue) seqrow.getCell(seqIndex)).getStringValue();
+                sequences.put(key, value);
+            }
         }
         return sequences;
     }
@@ -147,11 +169,22 @@ public class ScoreNodeModel extends NodeModel {
 
     @Override
     protected DataTableSpec[] configure(DataTableSpec[] inSpecs) throws InvalidSettingsException {
-    	if (inSpecs.length > 0 && inSpecs[0] != null){
-        	int columnIndex = inSpecs[0].findColumnIndex(m_identifierColumnName.getStringValue());
-        	if (columnIndex < 0){
-        		throw new InvalidSettingsException("No valid identifier column selected");
-        	}
+        DataTableSpec sequenceSpec = inSpecs[0];
+        int idColumnIndex = sequenceSpec.findColumnIndex(m_identifierColumnName.getStringValue());
+        if (idColumnIndex < 0) {
+            throw new InvalidSettingsException("No valid identifier column selected, require a String column");
+        }
+        int seqColumnIndex = sequenceSpec.findColumnIndex(m_sequenceColumnName.getStringValue());
+        if (seqColumnIndex < 0) {
+            throw new InvalidSettingsException("No valid sequence column selected, require a String column");
+        }
+        if (idColumnIndex == seqColumnIndex) {
+            throw new InvalidSettingsException("Sequence identifier column and sequence column should not be the same column");
+        }
+        DataTableSpec subfamSpec = inSpecs[1];
+        int subfamColumnIndex = subfamSpec.findColumnIndex(m_identifierColumnName.getStringValue());
+        if (subfamColumnIndex < 0) {
+            throw new InvalidSettingsException("No valid identifier column selected in subfamily port, require a String column");
         }
         return new DataTableSpec[] { outputSpec() };
     }

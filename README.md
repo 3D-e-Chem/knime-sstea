@@ -58,6 +58,19 @@ Steps to get development environment setup:
 
 During import the Tycho Eclipse providers must be installed.
 
+## Tests
+
+Tests for the node are in `tests/src` directory.
+Tests can be executed with `mvn verify`, they will be run in a separate Knime environment.
+
+### Unit tests
+
+Unit tests written in Junit4 format can be put in `tests/src/java`.
+
+### Workflow tests
+
+See https://github.com/3D-e-Chem/knime-testflow#3-add-test-workflow
+
 # New release
 
 1. Update versions in pom files with `mvn org.eclipse.tycho:tycho-versions-plugin:set-version -DnewVersion=<version>` command.

@@ -8,23 +8,21 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import javax.xml.crypto.KeySelectorException;
-
 public class Scorer {
     /**
      * Nr of all amino acids and gap (-).
      */
     private int distinctAA = 21;
 
-    public List<Score> scoreit(Map<String, String> sequences, Set<String> subfamily_members) throws KeySelectorException {
+    public List<Score> scoreit(Map<String, String> sequences, Set<String> subfamily_members) {
         if (sequences.size() < 2) {
             throw new IllegalArgumentException("Not enough sequences");
         }
         if (subfamily_members.isEmpty()) {
-            throw new IllegalArgumentException("Not enough subfamily_members");
+            throw new IllegalArgumentException("Not enough subfamily members");
         }
         if (!sequences.keySet().containsAll(subfamily_members)) {
-            throw new KeySelectorException("Not all subfamily_members are in keys of sequences");
+            throw new IllegalArgumentException("Not all subfamily members are identifiers of given sequences");
         }
 
         int minimumSequenceLength = Collections.min(sequences.values()).length();

@@ -4,6 +4,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+* Integration tests, by running workflows
+
+### Removed
+
+* Node views
+
 ## [1.0.4] - 2016-06-03
 
 ### Changed
