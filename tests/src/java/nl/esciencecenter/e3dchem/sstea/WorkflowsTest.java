@@ -16,31 +16,37 @@ import org.knime.testing.core.TestrunConfiguration;
 import nl.esciencecenter.e3dchem.knime.testing.TestFlowRunner;
 
 public class WorkflowsTest {
-    @Rule
-    public ErrorCollector collector = new ErrorCollector();
-    private TestFlowRunner runner;
+	@Rule
+	public ErrorCollector collector = new ErrorCollector();
+	private TestFlowRunner runner;
 
-    @Before
-    public void setUp() {
-        TestrunConfiguration runConfiguration = new TestrunConfiguration();
-        runConfiguration.setTestDialogs(true);
-        runConfiguration.setReportDeprecatedNodes(true);
-        runConfiguration.setCheckMemoryLeaks(true);
-        runner = new TestFlowRunner(collector, runConfiguration);
-    }
+	@Before
+	public void setUp() {
+		TestrunConfiguration runConfiguration = new TestrunConfiguration();
+		runConfiguration.setTestDialogs(true);
+		runConfiguration.setReportDeprecatedNodes(true);
+		runConfiguration.setCheckMemoryLeaks(true);
+		runner = new TestFlowRunner(collector, runConfiguration);
+	}
 
-    @Test
-    public void test_simple() throws IOException, InvalidSettingsException, CanceledExecutionException,
-            UnsupportedWorkflowVersionException, LockFailedException, InterruptedException {
-        File workflowDir = new File("src/knime/sstea-simple-test");
-        runner.runTestWorkflow(workflowDir);
-    }
+	@Test
+	public void test_simple() throws IOException, InvalidSettingsException, CanceledExecutionException,
+			UnsupportedWorkflowVersionException, LockFailedException, InterruptedException {
+		File workflowDir = new File("src/knime/sstea-simple-test");
+		runner.runTestWorkflow(workflowDir);
+	}
 
-    @Test
-    public void test_inputs() throws IOException, InvalidSettingsException, CanceledExecutionException,
-            UnsupportedWorkflowVersionException, LockFailedException, InterruptedException {
-        File workflowDir = new File("src/knime/sstea-test-inputs");
-        runner.runTestWorkflow(workflowDir);
-    }
+	@Test
+	public void test_inputs() throws IOException, InvalidSettingsException, CanceledExecutionException,
+			UnsupportedWorkflowVersionException, LockFailedException, InterruptedException {
+		File workflowDir = new File("src/knime/sstea-test-inputs");
+		runner.runTestWorkflow(workflowDir);
+	}
 
+	@Test
+	public void test_gaps() throws IOException, InvalidSettingsException, CanceledExecutionException,
+			UnsupportedWorkflowVersionException, LockFailedException, InterruptedException {
+		File workflowDir = new File("src/knime/sstea-test-gaps");
+		runner.runTestWorkflow(workflowDir);
+	}
 }

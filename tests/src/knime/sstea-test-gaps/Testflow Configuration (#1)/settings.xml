@@ -22,24 +22,10 @@
 <entry key="1" type="xstring" value="17"/>
 </config>
 <config key="requiredNodeWarnings">
-<entry key="nodeID_0" type="xstring" value="11"/>
-<entry key="message_0" type="xstring" value="Node created an empty data table."/>
-<entry key="nodeID_1" type="xstring" value="13"/>
-<entry key="message_1" type="xstring" value="Node created an empty data table."/>
-<entry key="nodeID_2" type="xstring" value="14"/>
-<entry key="message_2" type="xstring" value="Node created an empty data table."/>
-<entry key="nodeID_3" type="xstring" value="15"/>
-<entry key="message_3" type="xstring" value="Node created an empty data table."/>
-<entry key="nodeID_4" type="xstring" value="18"/>
-<entry key="message_4" type="xstring" value="Node created an empty data table."/>
-<entry key="count" type="xint" value="5"/>
+<entry key="count" type="xint" value="0"/>
 </config>
 <config key="requiredNodeErrors">
-<entry key="nodeID_0" type="xstring" value="16"/>
-<entry key="message_0" type="xstring" value="Execute failed: Not all subfamily members are identifiers of given sequences"/>
-<entry key="nodeID_1" type="xstring" value="17"/>
-<entry key="message_1" type="xstring" value="Execute failed: Not all subfamily members are identifiers of given sequences"/>
-<entry key="count" type="xint" value="2"/>
+<entry key="count" type="xint" value="0"/>
 </config>
 <entry key="timeout" type="xint" value="300"/>
 <entry key="maxHilitedRows" type="xint" value="2500"/>
@@ -48,7 +34,7 @@
 </config>
 </config>
 <entry key="customDescription" type="xstring" isnull="true" value=""/>
-<entry key="state" type="xstring" value="CONFIGURED"/>
+<entry key="state" type="xstring" value="EXECUTED"/>
 <entry key="factory" type="xstring" value="org.knime.testing.node.config.TestConfigNodeFactory"/>
 <entry key="node-name" type="xstring" value="Testflow Configuration"/>
 <entry key="node-bundle-name" type="xstring" value="Test-Node extension for KNIME Workbench"/>
@@ -61,11 +47,11 @@
 <entry key="node-feature-version" type="xstring" value="3.1.2.v201603311002"/>
 <config key="factory_settings"/>
 <entry key="name" type="xstring" value="Testflow Configuration"/>
-<entry key="hasContent" type="xboolean" value="false"/>
+<entry key="hasContent" type="xboolean" value="true"/>
 <entry key="isInactive" type="xboolean" value="false"/>
 <config key="ports"/>
 <config key="filestores">
 <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-<entry key="file_store_id" type="xstring" isnull="true" value=""/>
+<entry key="file_store_id" type="xstring" value="dfa05894-8d75-4a6a-a866-30f14ef25835"/>
 </config>
 </config>
