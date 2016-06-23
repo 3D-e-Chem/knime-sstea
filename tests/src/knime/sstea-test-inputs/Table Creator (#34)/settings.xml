@@ -42,7 +42,7 @@
 <entry key="3" type="xstring" value="2"/>
 <entry key="4" type="xstring" value="5"/>
 <entry key="5" type="xstring" value="1"/>
-<entry key="6" type="xstring" value="1.6236441926071754"/>
+<entry key="6" type="xstring" value="1.5788753840725982"/>
 <entry key="7" type="xstring" value="0.6365141682948128"/>
 <entry key="8" type="xstring" value="1.5508457063832815"/>
 <entry key="9" type="xstring" value="2"/>
@@ -154,6 +154,6 @@
 </config>
 <config key="filestores">
 <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-<entry key="file_store_id" type="xstring" value="51a38c79-f9e0-43b4-b5d2-4d26c3de747e"/>
+<entry key="file_store_id" type="xstring" value="783b91cd-609f-4bfb-9f0b-dfd390f3f622"/>
 </config>
 </config>
