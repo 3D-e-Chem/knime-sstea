@@ -49,7 +49,7 @@ Steps to get development environment setup:
 4. Install m2e (Maven integration for Eclipse) + Test workflows in JUnit + 3D-e-Chem node category 
 
     1. Goto Help > Install new software ...
-    2. Make sure Update site is http://update.knime.org/analytics-platform/3.1 and https://3d-e-chem.github.io/updates in the pull down list otherwise add it
+    2. Make sure Update site is http://update.knime.org/analytics-platform/3.1 and https://3d-e-chem.github.io/updates are in the pull down list otherwise add them
     3. Select --all sites-- in work with pulldown
     4. Select m2e (Maven integration for Eclipse)
     5. Select Test Knime workflows from a Junit test
