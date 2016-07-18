@@ -5,6 +5,8 @@ Formatted as described on http://keepachangelog.com/
 
 ## [Unreleased]
 
+## [1.0.5] - 2016-07-18
+
 ### Added
 
 - Integration tests, by running workflows
