@@ -10,7 +10,7 @@ authors:
   affiliation: Nederlands eScience Center
   orcid: https://orcid.org/0000-0002-5821-2060
 version: 1.0.5
-date-released: '2016-07-21'
+date-released: 2016-07-21
 repository-code: https://github.com/3D-e-Chem/knime-sstea
 license: Apache-2.0
 references:
