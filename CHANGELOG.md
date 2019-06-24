@@ -7,7 +7,7 @@ Formatted as described on http://keepachangelog.com/
 
 ### Changes
 
-- Requires KNIME 4.0
+- Requires KNIME 4.0 [#12](https://github.com/3D-e-Chem/knime-sstea/issues/12)
 
 ## [1.0.5] - 2016-07-18
 
