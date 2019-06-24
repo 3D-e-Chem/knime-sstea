@@ -26,6 +26,8 @@ public class WorkflowsTest {
         runConfiguration.setTestDialogs(true);
         runConfiguration.setReportDeprecatedNodes(true);
         runConfiguration.setCheckMemoryLeaks(true);
+        runConfiguration.setLoadSaveLoad(false);
+        runConfiguration.setAllowedMemoryIncrease(2097152);
         runner = new TestFlowRunner(collector, runConfiguration);
     }
 
