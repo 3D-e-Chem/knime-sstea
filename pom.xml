@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>nl.esciencecenter.e3dchem.sstea</groupId>
     <artifactId>nl.esciencecenter.e3dchem.sstea</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.5-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <organization>
@@ -32,6 +32,7 @@
         <module>feature</module>
         <module>p2</module>
         <module>tests</module>
+        <module>targetplatform</module>
     </modules>
 
     <prerequisites>
@@ -39,27 +40,14 @@
     </prerequisites>
 
     <properties>
-        <knime.version>3.2</knime.version>
-        <knime.update.site>http://update.knime.org/analytics-platform/${knime.version}/</knime.update.site>
-        <tycho.version>0.24.0</tycho.version>
-        <tycho.extras.version>0.24.0</tycho.extras.version>
+        <tycho.version>1.4.0</tycho.version>
+        <tycho.extras.version>1.4.0</tycho.extras.version>
         <tycho.test.platformArgs/>
         <tycho.test.jvmArgs>-Xmx512m</tycho.test.jvmArgs>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <target.file>KNIME-AP-4.0</target.file>
     </properties>
-    <repositories>
-        <repository>
-            <id>knime</id>
-            <layout>p2</layout>
-            <url>${knime.update.site}</url>
-        </repository>
-        <repository>
-            <id>3d-e-chem</id>
-            <layout>p2</layout>
-            <url>https://3d-e-chem.github.io/updates</url>
-        </repository>
-    </repositories>
     <build>
         <plugins>
             <plugin>
@@ -103,6 +91,14 @@
                             <arch>x86_64</arch>
                         </environment>
                     </environments>
+                    <target>
+						<artifact>
+							<groupId>nl.esciencecenter.e3dchem.sstea</groupId>
+							<artifactId>nl.esciencecenter.e3dchem.sstea.targetplatform</artifactId>
+							<version>${project.version}</version>
+							<classifier>${target.file}</classifier>
+						</artifact>
+					</target>
                 </configuration>
             </plugin>
             <plugin>

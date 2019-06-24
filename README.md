@@ -14,7 +14,7 @@ Requirements:
 
 * KNIME, https://www.knime.org
 
-Steps to get KripoDB Python templates inside KNIME:
+Steps install ss-TEA KNIME node:
 
 1. Goto Help > Install new software ... menu
 2. Press add button
