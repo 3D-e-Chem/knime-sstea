@@ -5,6 +5,8 @@ Formatted as described on http://keepachangelog.com/
 
 ## [Unreleased]
 
+## [1.0.6] - 2019-06-26
+
 ### Changes
 
 - Requires KNIME 4.0 [#12](https://github.com/3D-e-Chem/knime-sstea/issues/12)
