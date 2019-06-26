@@ -84,14 +84,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 															<fileset dir="${source-location}/plugin/src" />
 														</sourcefiles>
 													</structure>
-													<structure name="sstea">
-														<classfiles>
-															<fileset dir="${source-location}/server/target/classes" />
-														</classfiles>
-														<sourcefiles encoding="UTF-8">
-															<fileset dir="${source-location}/server/src" />
-														</sourcefiles>
-													</structure>
 													<html destdir="${project.basedir}/target/jacoco/report" />
 													<xml destfile="${project.basedir}/target/jacoco/report/jacoco.xml" />
 												</jacoco-report>
