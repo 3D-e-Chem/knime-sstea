@@ -5,8 +5,9 @@ The ss-TEA can identify specific ligand binding residue positions for any recept
 See reference at https://doi.org/10.1186/1471-2105-12-332 for a description of the score.
 
 [![Build Status](https://travis-ci.org/3D-e-Chem/knime-sstea.svg?branch=master)](https://travis-ci.org/3D-e-Chem/knime-sstea)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ac1953c0defd4b81bd0c12c37cede85f)](https://www.codacy.com/app/3D-e-Chem/knime-sstea?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=3D-e-Chem/knime-sstea&amp;utm_campaign=Badge_Grade)
 [![DOI](https://zenodo.org/badge/19641/3D-e-Chem/knime-sstea.svg)](https://zenodo.org/badge/latestdoi/19641/3D-e-Chem/knime-sstea)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=nl.esciencecenter.e3dchem.sstea%3Anl.esciencecenter.e3dchem.sstea&metric=alert_status)](https://sonarcloud.io/dashboard?id=nl.esciencecenter.e3dchem.sstea%3Anl.esciencecenter.e3dchem.sstea)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=nl.esciencecenter.e3dchem.sstea%3Anl.esciencecenter.e3dchem.sstea&metric=coverage)](https://sonarcloud.io/dashboard?id=nl.esciencecenter.e3dchem.sstea%3Anl.esciencecenter.e3dchem.sstea)
 
 # Installation
 
