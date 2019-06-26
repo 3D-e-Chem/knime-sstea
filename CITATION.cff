@@ -3,14 +3,14 @@
 cff-version: 1.0.3
 message: If you use this software, please cite it as below.
 title: KNIME ss-TEA node
-doi: 10.5281/zenodo.58369
+doi: 10.5281/zenodo.3257702
 authors:
 - given-names: Stefan
   family-names: Verhoeven
   affiliation: Nederlands eScience Center
   orcid: https://orcid.org/0000-0002-5821-2060
-version: 1.0.5
-date-released: 2016-07-21
+version: 1.0.6
+date-released: 2019-06-26
 repository-code: https://github.com/3D-e-Chem/knime-sstea
 license: Apache-2.0
 references:
