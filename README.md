@@ -19,7 +19,7 @@ Steps install ss-TEA KNIME node:
 
 1. Goto Help > Install new software ... menu
 2. Press add button
-3. Fill text fields with `https://3d-e-chem.github.io/updates`
+3. Fill text fields with `https://3d-e-chem.github.io/updates/5.1/`
 4. Select --all sites-- in work with pulldown
 5. Open KNIME 3D-e-Chem Contributions folder
 6. Select ss-TEA
@@ -44,11 +44,11 @@ An Eclipse update site will be made in `p2/target/repository` repository.
 
 Steps to get development environment setup based on https://github.com/knime/knime-sdk-setup#sdk-setup:
 
-1. Install Java 8
-2. Install Eclipse for [RCP and RAP developers](https://www.eclipse.org/downloads/packages/release/2018-12/r/eclipse-ide-rcp-and-rap-developers)
-3. Configure Java 8 inside Eclipse Window > Preferences > Java > Installed JREs
+1. Install Java 17
+2. Install Eclipse for [RCP and RAP developers](https://www.eclipse.org/downloads/packages/installer)
+3. Configure Java 17 inside Eclipse Window > Preferences > Java > Installed JREs
 4. Import this repo as an Existing Maven project
-5. Activate target platform by going to Window > Preferences > Plug-in Development > Target Platform and check the `KNIME Analytics Platform (4.0) - nl.esciencecenter.e3dchem.knime.sstea.targetplatform/KNIME-AP-4.0.target` target definition.
+5. Activate target platform by going to Window > Preferences > Plug-in Development > Target Platform and check the `KNIME Analytics Platform (5.1) - nl.esciencecenter.e3dchem.knime.sstea.targetplatform/KNIME-AP-5.1.target` target definition.
 
 During import the Tycho Eclipse providers must be installed.
 

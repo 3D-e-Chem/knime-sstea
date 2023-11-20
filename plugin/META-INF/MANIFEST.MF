@@ -3,9 +3,9 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Subfamily specific two entropy analysis score
 Bundle-SymbolicName: nl.esciencecenter.e3dchem.sstea.plugin;singleton:=true
 Bundle-Version: 1.0.6.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: org.knime.core;bundle-version="[4.0.0,5.0.0)",
- org.knime.base;bundle-version="[4.0.0,5.0.0)",
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Require-Bundle: org.knime.core;bundle-version="[4.0.0,6.0.0)",
+ org.knime.base;bundle-version="[4.0.0,6.0.0)",
  nl.esciencecenter.e3dchem.plugin;bundle-version="[1.0.0,2.0.0)"
 Bundle-Vendor: Netherlands eScience Center
 Bundle-Activator: nl.esciencecenter.e3dchem.sstea.NodePlugin
