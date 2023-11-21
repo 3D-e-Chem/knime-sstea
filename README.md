@@ -5,8 +5,8 @@ The ss-TEA can identify specific ligand binding residue positions for any recept
 See reference at https://doi.org/10.1186/1471-2105-12-332 for a description of the score.
 
 [![DOI](https://zenodo.org/badge/19641/3D-e-Chem/knime-sstea.svg)](https://zenodo.org/badge/latestdoi/19641/3D-e-Chem/knime-sstea)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=nl.esciencecenter.e3dchem.sstea%3Anl.esciencecenter.e3dchem.sstea&metric=alert_status)](https://sonarcloud.io/dashboard?id=nl.esciencecenter.e3dchem.sstea%3Anl.esciencecenter.e3dchem.sstea)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=nl.esciencecenter.e3dchem.sstea%3Anl.esciencecenter.e3dchem.sstea&metric=coverage)](https://sonarcloud.io/dashboard?id=nl.esciencecenter.e3dchem.sstea%3Anl.esciencecenter.e3dchem.sstea)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=3D-e-Chem_knime-sstea&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=3D-e-Chem_knime-sstea)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=3D-e-Chem_knime-sstea&metric=coverage)](https://sonarcloud.io/summary/new_code?id=3D-e-Chem_knime-sstea)
 
 # Installation
 
