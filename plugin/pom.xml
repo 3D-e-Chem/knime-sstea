@@ -6,12 +6,12 @@
 	<parent>
 		<groupId>nl.esciencecenter.e3dchem.sstea</groupId>
 		<artifactId>nl.esciencecenter.e3dchem.sstea</artifactId>
-		<version>1.0.6-SNAPSHOT</version>
+		<version>1.0.7-SNAPSHOT</version>
 	</parent>
 	<artifactId>nl.esciencecenter.e3dchem.sstea.plugin</artifactId>
 	<packaging>eclipse-plugin</packaging>
 	<properties>
-		<sonar.jacoco.reportPaths>../tests/target/jacoco.exec</sonar.jacoco.reportPaths>
+		<sonar.coverage.jacoco.xmlReportPaths>../tests/target/jacoco/report/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 		<sonar.junit.reportsPath>../tests/target/surefire-reports</sonar.junit.reportsPath>
 	</properties>
 </project>
